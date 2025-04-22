@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    #driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://my8002.gabiadb.com/amsdb
+    username: amsdb
+    password: ghrn1004!!
+
+    dbcp2:
+      validation-query: SELECT 1
+
+    hikari:
+      idle-timeout: 10000
+      connection-timeout: 10000
+      validation-timeout: 10000
+      max-lifetime: 580000
+
+mybatis:
+  mapper-locations: classpath:sql/*.xml
+
+logging:
+  level:
+    root: INFO
+

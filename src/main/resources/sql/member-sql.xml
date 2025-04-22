@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hong.bemajor.members.MemberDao">
+
+    <select id="selectAllMembers" resultType="com.hong.bemajor.members.MemberDto">
+		select * from member;
+	</select>
+    <insert id="insertMember" parameterType="com.hong.bemajor.members.MemberDto">
+		insert into member(login_id,password,name,email)
+		values(#{login_id},#{password},#{name},#{email})
+	</insert>
+</mapper>
