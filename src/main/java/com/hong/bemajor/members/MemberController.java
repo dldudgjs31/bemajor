@@ -42,7 +42,7 @@ public class MemberController {
         } catch (Exception e) {
             // 그 외
             return ResponseEntity.status(500)
-                .body(ApiResponse.error("인증 처리 중 오류가 발생했습니다."));
+                .body(ApiResponse.error("인증 처리 중 오류가 발생했습니다."+e.getMessage()));
         }
     }
 

@@ -28,12 +28,12 @@ public class MyUserDetailsService implements UserDetailsService {
         if (member == null) {
             throw new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
         }
-
+        System.out.println(">>>>>>test : " + member);
         // DB에서 조회한 사용자 정보를 바탕으로 UserDetails 객체 생성
         return User.builder()
                 .username(member.getLogin_id())
                 .password(member.getPassword())
-                .roles("USER")// 비밀번호는 인코딩되어 있을 수 있으므로, 필요시 암호화 확인
+                .roles(member.getRank_id())// 비밀번호는 인코딩되어 있을 수 있으므로, 필요시 암호화 확인
                 .build();
     }
 }

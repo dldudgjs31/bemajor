@@ -35,6 +35,8 @@
 	  )
 	</insert>
 	<select id="selectMemberByLoginId" resultType="com.hong.bemajor.members.MemberDto">
-     SELECT * FROM member WHERE login_id = #{login_id}
+     SELECT name,password,login_id,member_id,
+            (select b.rank_key from member_rank b where b.rank_id=a.rank_id) as rank_id
+     FROM member a WHERE a.login_id = #{login_id}
  </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.hong.bemajor.members;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,7 @@ public class MemberService {
     }
 
     // 회원 등록
+    @Secured("ROLE_SYSOP")
     public void addMember(MemberDto member) {
         member.setPassword(passwordEncoder.encode(member.getPassword()));
         memberDao.insertMember(member);
