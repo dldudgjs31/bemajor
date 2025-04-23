@@ -11,11 +11,15 @@ spring:
     dbcp2:
       validation-query: SELECT 1
 
-    hikari:
-      idle-timeout: 10000
-      connection-timeout: 10000
-      validation-timeout: 10000
-      max-lifetime: 580000
+  hikari:
+      auto-commit: true
+      maximum-pool-size: 20     # 최대 커넥션 풀 크기, 10개로 설정
+      minimum-idle: 5           # 최소 유휴 커넥션 수, 5개로 설정
+      connection-timeout: 3000
+      validation-timeout: 3000
+      idle-timeout: 300000       # 유휴 커넥션 최대 대기 시간, 5분으로 설정
+      max-lifetime: 240000      # 커넥션 풀에서 커넥션의 최대 수명, 30분으로 설정
+
 
 mybatis:
   mapper-locations: classpath:sql/*.xml
@@ -23,4 +27,6 @@ mybatis:
 logging:
   level:
     root: INFO
+    org.springframework.security: INFO
+
 

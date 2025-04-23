@@ -34,5 +34,18 @@ public class MemberDto {
     @NotBlank(message = "이메일은 필수 입력 항목입니다.")
     private String email;  // 이메일은 유효한 형식이어야 하며, 빈 값이 허용되지 않습니다.
 
+    private String valid_from;
+
+    private String valid_to;
+
+    @NotBlank(message = "휴대폰 번호는 필수 입력 항목입니다.")
+    private String phone;
+
+    private String address;
+
+    private String branch_id;
+    private String birth_date;
+    private String rank_id;
+
 
 }

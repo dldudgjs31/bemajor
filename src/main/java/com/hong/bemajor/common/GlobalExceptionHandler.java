@@ -3,6 +3,7 @@ package com.hong.bemajor.common;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.web.csrf.CsrfException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,13 +19,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<String>> handleDataAccessException(DataAccessException e) {
         String message = e.getMessage();
         if (message.contains("Duplicate entry")) {
-            ApiResponse<String> response = ApiResponse.error("Duplicate data found in the database.");
+            ApiResponse<String> response = ApiResponse.error("이미 등록된 데이터");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         } else if (message.contains("constraint violation")) {
-            ApiResponse<String> response = ApiResponse.error("Data constraint violation occurred.");
+            ApiResponse<String> response = ApiResponse.error("무결성 에러");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         } else {
-            ApiResponse<String> response = ApiResponse.error("Database error: " + e.getMessage());
+            ApiResponse<String> response = ApiResponse.error("데이터 오류: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
@@ -44,7 +45,18 @@ public class GlobalExceptionHandler {
     // 기타 예외 처리
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<String>> handleAllExceptions(Exception e) {
-        ApiResponse<String> response = ApiResponse.error("An unexpected error occurred: " + e.getMessage());
+        ApiResponse<String> response = ApiResponse.error("시스템 에러: " + e.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    }
+
+    /**
+     * CSRF 토큰 오류
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler(CsrfException.class)
+    public ResponseEntity<ApiResponse<String>> handleCsrfException(CsrfException ex) {
+        ApiResponse<String> response = ApiResponse.error("CSRF token 오류: " + ex.getMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(response);
     }
 }

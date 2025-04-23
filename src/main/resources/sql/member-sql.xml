@@ -6,7 +6,35 @@
 		select * from member;
 	</select>
     <insert id="insertMember" parameterType="com.hong.bemajor.members.MemberDto">
-		insert into member(login_id,password,name,email)
-		values(#{login_id},#{password},#{name},#{email})
+		INSERT INTO member (
+			member_id,
+			login_id,
+			password,
+			name,
+			phone,
+			valid_from,
+			valid_to,
+			birth_date,
+			address,
+			email,
+			branch_id,
+			rank_id
+	  )VALUES (
+			#{member_id},
+			#{login_id},
+			#{password},
+			#{name},
+			#{phone},
+			#{valid_from},
+			#{valid_to},
+			#{birth_date},
+			#{address},
+			#{email},
+			#{branch_id},
+			#{rank_id}
+	  )
 	</insert>
+	<select id="selectMemberByLoginId" resultType="com.hong.bemajor.members.MemberDto">
+     SELECT * FROM member WHERE login_id = #{login_id}
+ </select>
 </mapper>

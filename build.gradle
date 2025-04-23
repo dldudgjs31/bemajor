@@ -16,10 +16,22 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'         // Spring MVC + Jackson
+    // 1) Web + Jackson → 내부 Logback 제거
+    implementation('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+    // 2) Log4j2 적용 → Log4j → SLF4J 브리지 제거
+    implementation('org.springframework.boot:spring-boot-starter-log4j2') {
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j'
+    }      // Spring MVC + Jackson
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'        // Spring JDBC + JdbcTemplate
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
     testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.3.1'// Hibernate Validator (JSR303)
     runtimeOnly 'com.mysql:mysql-connector-j'                             // MySQL JDBC driver
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
