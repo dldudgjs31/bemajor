@@ -27,23 +27,12 @@ public class MemberController {
     // 로그인 (POST /api/members/login)
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<String>> login(@Valid @RequestBody LoginRequest loginRequest) {
-        try {
-            String token = loginService.authenticate(loginRequest);  // 로그인 인증 후 JWT 토큰 발급
-            ApiResponse<String> response = ApiResponse.success(token);  // 성공적인 응답
-            return ResponseEntity.ok(response);
-        } catch (UsernameNotFoundException e) {
-            // 사용자 없을 때
-            return ResponseEntity.status(404)
-                .body(ApiResponse.error(e.getMessage()));
-        } catch (BadCredentialsException e) {
-            // 비밀번호 불일치
-            return ResponseEntity.status(401)
-                .body(ApiResponse.error("비밀번호가 일치하지 않습니다."));
-        } catch (Exception e) {
-            // 그 외
-            return ResponseEntity.status(500)
-                .body(ApiResponse.error("인증 처리 중 오류가 발생했습니다."+e.getMessage()));
-        }
+        // AuthenticationManager.authenticate() 에서
+        // UsernameNotFoundException, BadCredentialsException 등이 발생하면
+        // GlobalExceptionHandler로 위임됨
+        String token = loginService.authenticate(loginRequest);
+        ApiResponse<String> response = ApiResponse.success(token);
+        return ResponseEntity.ok(response); // 200 OK
     }
 
     // 회원 목록 조회 (GET /api/members)
