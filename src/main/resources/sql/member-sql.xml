@@ -3,7 +3,7 @@
 <mapper namespace="com.hong.bemajor.members.MemberDao">
 
     <select id="selectAllMembers" resultType="com.hong.bemajor.members.MemberDto">
-		select * from member;
+		select * from member
 	</select>
     <insert id="insertMember" parameterType="com.hong.bemajor.members.MemberDto">
 		INSERT INTO member (

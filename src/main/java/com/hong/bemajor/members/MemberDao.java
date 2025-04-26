@@ -10,7 +10,5 @@ import java.util.List;
 public interface MemberDao {
     public int insertMember(MemberDto vo);
     public List<MemberDto> selectAllMembers();
-
-
     public MemberDto selectMemberByLoginId(String login_id);
 }

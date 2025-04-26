@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    #driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://my8002.gabiadb.com/amsdb
     username: amsdb
     password: ghrn1004!!
