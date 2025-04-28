@@ -1,11 +1,10 @@
-package com.hong.bemajor.members;
+package com.hong.bemajor.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -15,7 +14,7 @@ import javax.validation.constraints.Size;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberDto {
+public class UsersDto {
     private Long member_id;
 
     @NotBlank(message = "로그인 ID는 필수 입력 항목입니다.")

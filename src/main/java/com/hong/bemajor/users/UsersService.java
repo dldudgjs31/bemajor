@@ -1,6 +1,5 @@
-package com.hong.bemajor.members;
+package com.hong.bemajor.users;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,24 +9,23 @@ import java.util.List;
 
 @Service
 @Transactional
-public class MemberService {
+public class UsersService {
     private final PasswordEncoder passwordEncoder;
-    private final MemberDao memberDao;
+    private final UsersDao usersDao;
 
-    public MemberService(MemberDao memberDao, PasswordEncoder passwordEncoder) {
-        this.memberDao = memberDao;
+    public UsersService(UsersDao usersDao, PasswordEncoder passwordEncoder) {
+        this.usersDao = usersDao;
         this.passwordEncoder = passwordEncoder;
     }
 
     // 회원 목록 조회
-    public List<MemberDto> getAllMembers() {
-        return memberDao.selectAllMembers();
+    public List<UsersDto> getAllUsers() {
+        return usersDao.selectAllMembers();
     }
 
     // 회원 등록
-    @Secured("ROLE_SYSOP")
-    public void addMember(MemberDto member) {
+    public void addUser(UsersDto member) {
         member.setPassword(passwordEncoder.encode(member.getPassword()));
-        memberDao.insertMember(member);
+        usersDao.insertMember(member);
     }
 }

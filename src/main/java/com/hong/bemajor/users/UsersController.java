@@ -1,28 +1,25 @@
-package com.hong.bemajor.members;
+package com.hong.bemajor.users;
 
 import com.hong.bemajor.common.ApiResponse;
 import com.hong.bemajor.login.LoginRequest;
 import com.hong.bemajor.login.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/members")
-public class MemberController {
+@RequestMapping("/api/users")
+public class UsersController {
 
-    private final MemberService memberService;
+    private final UsersService usersService;
     private final LoginService loginService;
 
     @Autowired
-    public MemberController(MemberService memberService, LoginService loginService) {
-        this.memberService = memberService;
+    public UsersController(UsersService usersService, LoginService loginService) {
+        this.usersService = usersService;
         this.loginService = loginService;
     }
     // 로그인 (POST /api/members/login)
@@ -36,18 +33,18 @@ public class MemberController {
         return ResponseEntity.ok(response); // 200 OK
     }
 
-    // 회원 목록 조회 (GET /api/members)
+    // 회원 목록 조회 (GET /api/users)
     @GetMapping
-    public ResponseEntity<ApiResponse<List<MemberDto>>> getMembers() {
-        List<MemberDto> members = memberService.getAllMembers();
-        ApiResponse<List<MemberDto>> response = ApiResponse.success(members);
+    public ResponseEntity<ApiResponse<List<UsersDto>>> getUsers() {
+        List<UsersDto> users = usersService.getAllUsers();
+        ApiResponse<List<UsersDto>> response = ApiResponse.success(users);
         return ResponseEntity.ok(response);  // 200 OK
     }
 
-    // 회원 등록 (POST /api/members)
+    // 회원 등록 (POST /api/users)
     @PostMapping
-    public ResponseEntity<ApiResponse<String>> createMember(@Valid @RequestBody MemberDto newMember) {
-        memberService.addMember(newMember);
+    public ResponseEntity<ApiResponse<String>> createUsers(@Valid @RequestBody UsersDto usersDto) {
+        usersService.addUser(usersDto);
         ApiResponse<String> response = ApiResponse.success("계정 생성 완료");
         return ResponseEntity.status(201).body(response);  // 201 Created
     }

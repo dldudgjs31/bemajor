@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hong.bemajor.users.UsersDao">
+
+    <select id="selectAllMembers" resultType="com.hong.bemajor.users.UsersDto">
+		select * from users
+	</select>
+    <insert id="insertMember" parameterType="com.hong.bemajor.users.UsersDto">
+		INSERT INTO users (
+			login_id,
+			password,
+			name,
+			phone,
+			valid_from,
+			valid_to,
+			birth_date,
+			address,
+			email,
+			branch_id,
+			rank_id
+	  )VALUES (
+			#{login_id},
+			#{password},
+			#{name},
+			#{phone},
+			#{valid_from},
+			#{valid_to},
+			#{birth_date},
+			#{address},
+			#{email},
+			#{branch_id},
+			#{rank_id}
+	  )
+	</insert>
+	<select id="selectUserByLoginId" resultType="com.hong.bemajor.users.UsersDto">
+     SELECT name,password,login_id,
+            (select b.rank_id from ranks b where b.rank_id=a.rank_id) as rank_id
+     FROM users a WHERE a.login_id = #{login_id}
+ </select>
+</mapper>
