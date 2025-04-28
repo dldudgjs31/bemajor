@@ -1,6 +1,6 @@
 package com.hong.bemajor.login;
 
-import com.hong.bemajor.members.MemberDao;
+import com.hong.bemajor.users.UsersDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,19 +18,19 @@ public class LoginService {
 
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
-    private final MemberDao memberDao;
+    private final UsersDao usersDao;
 
     /**
      * 생성자 주입
      * @param authenticationManager Spring Security 인증 매니저
      * @param jwtUtil JWT 토큰 생성/검증 유틸
-     * @param memberDao 사용자 정보 조회 DAO (필요 시 사용)
+     * @param usersDao 사용자 정보 조회 DAO (필요 시 사용)
      */
     @Autowired
-    public LoginService(AuthenticationManager authenticationManager, JwtUtil jwtUtil, MemberDao memberDao) {
+    public LoginService(AuthenticationManager authenticationManager, JwtUtil jwtUtil, UsersDao usersDao) {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
-        this.memberDao = memberDao;
+        this.usersDao = usersDao;
     }
 
     /**

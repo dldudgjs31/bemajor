@@ -1,7 +1,7 @@
 package com.hong.bemajor.login;
 
-import com.hong.bemajor.members.MemberDao;
-import com.hong.bemajor.members.MemberDto;
+import com.hong.bemajor.users.UsersDao;
+import com.hong.bemajor.users.UsersDto;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,14 +15,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
-    private final MemberDao memberDao;
+    private final UsersDao usersDao;
 
     /**
      * 생성자 주입
-     * @param memberDao 사용자 조회 DAO
+     * @param usersDao 사용자 조회 DAO
      */
-    public MyUserDetailsService(MemberDao memberDao) {
-        this.memberDao = memberDao;
+    public MyUserDetailsService(UsersDao usersDao) {
+        this.usersDao = usersDao;
     }
 
     /**
@@ -34,18 +34,18 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) {
         // DB에서 login_id로 사용자 정보 조회
-        MemberDto member = memberDao.selectMemberByLoginId(username);
+        UsersDto user = usersDao.selectUserByLoginId(username);
 
         // 사용자 정보가 없으면 예외 처리
-        if (member == null) {
+        if (user == null) {
             throw new UsernameNotFoundException("사용자를 찾을 수 없습니다: " + username);
         }
 
         // Spring Security용 UserDetails 객체 생성
         return User.builder()
-                .username(member.getLogin_id())          // 로그인 ID
-                .password(member.getPassword())          // 암호화된 비밀번호
-                .roles(member.getRank_id())              // 사용자 권한(역할) 설정
+                .username(user.getLogin_id())          // 로그인 ID
+                .password(user.getPassword())          // 암호화된 비밀번호
+                .roles(user.getRank_id())              // 사용자 권한(역할) 설정
                 .build();                                // UserDetails 반환
     }
 }
