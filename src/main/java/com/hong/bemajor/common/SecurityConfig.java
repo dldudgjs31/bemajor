@@ -61,6 +61,10 @@ public class SecurityConfig {
           .and()
           .authorizeRequests()
             .antMatchers("/api/members/login").permitAll()  // 로그인 URL은 모두 허용
+            .antMatchers("/api/ping").permitAll()
+            .antMatchers("/test").permitAll()
+            .antMatchers("/assets/**").permitAll()
+            .antMatchers("/vendors/**").permitAll()
             .anyRequest().authenticated()  // 나머지 요청은 인증 필요
           .and()
           // JWT 토큰 검증 필터 등록
