@@ -61,6 +61,7 @@ public class SecurityConfig {
               .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
               .ignoringAntMatchers(
                   "/api/members/login",
+                      "/test",
                   "/api/ping",
                   "/api/orders/**",
                   "/assets/**",
@@ -80,7 +81,7 @@ public class SecurityConfig {
               .antMatchers(
                   "/api/members/login",
                   "/api/ping",
-                  "/api/orders/**"
+                  "/api/orders/**", "/test"
               ).permitAll()
               // 정적 리소스
               .antMatchers(

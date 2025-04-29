@@ -24,8 +24,9 @@ public class PingController {
         return ApiResponse.success(Collections.singletonMap("ping", "pong"));
     }
     @GetMapping("/orders")
-    public String orders() {
+    public String orders(Model model) {
         // fragments/header/sidebar/footer + ordersFragment 조합
+        model.addAttribute("pageTitle", "Orders");
         return "pages/orders";
     }
     @GetMapping("/api/orders")

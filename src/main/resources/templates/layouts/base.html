@@ -9,30 +9,91 @@
   <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 
   <!-- 공통 라이브러리·CSS -->
+  <!-- ===============================================-->
+  <!--    Favicons-->
+  <!-- ===============================================-->
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicons/favicon-16x16.png">
+  <!--파비콘 설정-->
+  <!--<link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicons/favicon.ico">-->
+  <link rel="manifest" href="../assets/img/favicons/manifest.json">
+  <meta name="msapplication-TileImage" content="../assets/img/favicons/mstile-150x150.png">
+  <meta name="theme-color" content="#ffffff">
+  <script src="../vendors/simplebar/simplebar.min.js"></script>
+  <script src="../assets/js/config.js"></script>
 
+  <!-- ===============================================-->
+  <!--    Stylesheets-->
+  <!-- ===============================================-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <link href="../vendors/simplebar/simplebar.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link href="../assets/css/theme-rtl.min.css" type="text/css" rel="stylesheet" id="style-rtl">
+  <link href="../assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
+  <link href="../assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
+  <link href="../assets/css/user.min.css" type="text/css" rel="stylesheet" id="user-style-default">
 
+  <!-- ===============================================-->
+  <!--    JavaScripts-->
+  <!-- ===============================================-->
+  <script src="../vendors/popper/popper.min.js"></script>
+  <script src="../vendors/bootstrap/bootstrap.min.js"></script>
+  <script src="../vendors/anchorjs/anchor.min.js"></script>
+  <script src="../vendors/is/is.min.js"></script>
+  <script src="../vendors/fontawesome/all.min.js"></script>
+  <script src="../vendors/lodash/lodash.min.js"></script>
+  <script src="../vendors/list.js/list.min.js"></script>
+  <script src="../vendors/feather-icons/feather.min.js"></script>
+  <script src="../vendors/dayjs/dayjs.min.js"></script>
+  <script src="../assets/js/phoenix.js"></script>
 
+  <script>
+    var phoenixIsRTL = window.config.config.phoenixIsRTL;
+    if (phoenixIsRTL) {
+      var linkDefault = document.getElementById('style-default');
+      var userLinkDefault = document.getElementById('user-style-default');
+      linkDefault.setAttribute('disabled', true);
+      userLinkDefault.setAttribute('disabled', true);
+      document.querySelector('html').setAttribute('dir', 'rtl');
+    } else {
+      var linkRTL = document.getElementById('style-rtl');
+      var userLinkRTL = document.getElementById('user-style-rtl');
+      linkRTL.setAttribute('disabled', true);
+      userLinkRTL.setAttribute('disabled', true);
+    }
+  </script>
+
+<!--
   <style>
     .layout   { display:flex; min-height:100vh; flex-direction:column; }
     .container{ flex:1; display:flex; }
     .content  { flex:1; padding:20px; }
-  </style>
+  </style>-->
 </head>
 <body class="layout">
 
   <!-- 헤더 -->
-  <div th:replace="layouts/header :: header"></div>
+
 
   <!-- 사이드바 + 콘텐츠 -->
-  <div class="container">
-    <aside th:replace="layouts/sidebar :: sidebar"></aside>
-    <main class="content" layout:fragment="content">
-      <!-- 여기에 각 페이지의 content가 삽입됩니다 -->
-    </main>
-  </div>
+  <main class="main" id="top">
+    <div th:replace="layouts/sidebar :: sidebar"></div>
+    <div th:replace="layouts/header :: header"></div>
+    <div class="content">
+      <div class="d-flex flex-center content-min-h">
+        <div layout:fragment="content">
+          <!-- 여기에 각 페이지의 content가 삽입됩니다 -->
+        </div>
+      </div>
+    </div>
+    <div th:replace="layouts/footer :: footer"></div>
+  </main>>
 
   <!-- 푸터 -->
-  <div th:replace="layouts/footer :: footer"></div>
+
   <!-- 페이지별 스크립트 삽입 -->
   <div layout:fragment="pageScripts">
     <!-- 각 페이지가 여기에 스크립트를 주입합니다 -->
