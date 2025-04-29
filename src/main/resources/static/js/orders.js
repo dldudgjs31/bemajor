@@ -1,7 +1,7 @@
 $(function(){
   const token  = $('meta[name="_csrf"]').attr('content');
   const header = $('meta[name="_csrf_header"]').attr('content');
-
+//test
   // 1) 메타데이터 호출
   $.ajax({
     url: '/api/orders/metadata',
