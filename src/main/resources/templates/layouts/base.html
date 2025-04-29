@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <title th:text="${pageTitle}">페이지 제목</title>
+  <meta name="_csrf"        th:content="${_csrf.token}"/>
+  <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+  <!-- 공통 라이브러리·CSS -->
+
+
+
+  <style>
+    .layout   { display:flex; min-height:100vh; flex-direction:column; }
+    .container{ flex:1; display:flex; }
+    .content  { flex:1; padding:20px; }
+  </style>
+</head>
+<body class="layout">
+
+  <!-- 헤더 -->
+  <div th:replace="layouts/header :: header"></div>
+
+  <!-- 사이드바 + 콘텐츠 -->
+  <div class="container">
+    <aside th:replace="layouts/sidebar :: sidebar"></aside>
+    <main class="content" layout:fragment="content">
+      <!-- 여기에 각 페이지의 content가 삽입됩니다 -->
+    </main>
+  </div>
+
+  <!-- 푸터 -->
+  <div th:replace="layouts/footer :: footer"></div>
+  <!-- 페이지별 스크립트 삽입 -->
+  <div layout:fragment="pageScripts">
+    <!-- 각 페이지가 여기에 스크립트를 주입합니다 -->
+  </div>
+</body>
+</html>

@@ -23,7 +23,7 @@ spring:
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
-    mode: HTML5
+    mode: HTML
     cache: false
 
 mybatis:

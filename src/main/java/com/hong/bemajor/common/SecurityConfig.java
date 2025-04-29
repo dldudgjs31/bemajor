@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 /**
  * 스프링 시큐리티 설정 클래스
@@ -55,19 +56,42 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-          .csrf().disable()  // CSRF 보호 비활성화
-          .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)  // 세션 사용 안 함
-          .and()
-          .authorizeRequests()
-            .antMatchers("/api/members/login").permitAll()  // 로그인 URL은 모두 허용
-            .antMatchers("/api/ping").permitAll()
-            .antMatchers("/test").permitAll()
-            .antMatchers("/assets/**").permitAll()
-            .antMatchers("/vendors/**").permitAll()
-            .anyRequest().authenticated()  // 나머지 요청은 인증 필요
-          .and()
-          // JWT 토큰 검증 필터 등록
+          // 1) CSRF: 쿠키 기반 토큰 저장, 인증 필요 없는 경로 제외
+          .csrf(csrf -> csrf
+              .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+              .ignoringAntMatchers(
+                  "/api/members/login",
+                  "/api/ping",
+                  "/api/orders/**",
+                  "/assets/**",
+                  "/vendors/**",
+                  "/js/**"
+              )
+          )
+          // 2) 세션 없이 JWT만으로 인증
+          .sessionManagement(sm -> sm
+              .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+          )
+          // 3) URL별 인가
+          .authorizeRequests(auth -> auth
+              // 뷰 페이지
+              .antMatchers("/", "/index", "/orders/**").permitAll()
+              // 인증, 헬스체크 등
+              .antMatchers(
+                  "/api/members/login",
+                  "/api/ping",
+                  "/api/orders/**"
+              ).permitAll()
+              // 정적 리소스
+              .antMatchers(
+                  "/assets/**",
+                  "/vendors/**",
+                  "/js/**"
+              ).permitAll()
+              // 그 외 요청은 인증 필요
+              .anyRequest().authenticated()
+          )
+          // 4) JWT 필터 적용
           .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/base}"
+      lang="ko">
+<head>
+  <!-- layout:decorate 로 인해 <head> 내용은 base.html 이 사용하므로 비워두거나
+       여기서는 타이틀만 정의해도 됩니다 -->
+  <title th:text="${pageTitle}">주문 관리</title>
+</head>
+<body>
+  <!-- 1) 콘텐츠 영역 주입 -->
+  <div layout:fragment="content">
+    <div th:replace="fragments/ordersFragment :: ordersContent"></div>
+  </div>
+
+  <!-- 2) 페이지별 JS 주입 -->
+  <div layout:fragment="pageScripts">
+    <!-- jQuery가 base.html에 없다면 여기에 먼저 로드 -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous">
+    </script>
+    <!-- orders.js도 같은 프래그먼트 안에! -->
+    <script th:src="@{/js/orders.js}"></script>
+  </div>
+</body>
+</html>
