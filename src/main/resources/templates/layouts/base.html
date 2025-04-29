@@ -65,7 +65,12 @@
       userLinkRTL.setAttribute('disabled', true);
     }
   </script>
-
+  <!-- jQuery가 base.html에 없다면 여기에 먼저 로드 -->
+  <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous">
+  </script>
 <!--
   <style>
     .layout   { display:flex; min-height:100vh; flex-direction:column; }
@@ -83,13 +88,12 @@
     <div th:replace="layouts/sidebar :: sidebar"></div>
     <div th:replace="layouts/header :: header"></div>
     <div class="content">
-      <div class="d-flex flex-center content-min-h">
-        <div layout:fragment="content">
+        <div class="mb-9" layout:fragment="content">
           <!-- 여기에 각 페이지의 content가 삽입됩니다 -->
         </div>
-      </div>
+      <div th:replace="layouts/footer :: footer"></div>
     </div>
-    <div th:replace="layouts/footer :: footer"></div>
+
   </main>>
 
   <!-- 푸터 -->
