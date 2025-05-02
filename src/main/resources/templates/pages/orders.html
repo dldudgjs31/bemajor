@@ -13,11 +13,12 @@
   <div layout:fragment="content">
     <div th:replace="fragments/breadcrumbFragment :: breadCrumb"></div>
     <div th:replace="fragments/ordersFragment :: ordersContent"></div>
-    <div data-calendar='{"events":[{"title":"Bootcamp","start":"2025-03-24"}]}'></div>
+    <div id="appCalendar" class="calendar-outline mt-6 mb-9 fc fc-media-screen fc-direction-ltr fc-theme-standard" data-calendar='{"events":[{"title":"Bootcamp","start":"2025-03-24"}]}'></div>
   </div>
 
   <!-- 2) 페이지별 JS 주입 -->
   <div layout:fragment="pageScripts">
+    <script src="../assets/js/pages/calendar.js"></script>
     <script src="vendors/fullcalendar/index.global.min.js"></script>
     <!-- orders.js도 같은 프래그먼트 안에! -->
     <script th:src="@{/js/orders.js}"></script>
