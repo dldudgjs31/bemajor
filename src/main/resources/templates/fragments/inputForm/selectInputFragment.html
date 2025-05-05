@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="textInput(size, validId, labelName, validMsg, invalidMsg)"
+     th:class="'col-md-' + ${size}">
+  <label class="form-label" th:text="${labelName}"></label>
+  <input class="form-control" th:id="${validId}" type="text" required>
+  <div class="valid-feedback" th:text="${validMsg}"></div>
+  <div class="invalid-feedback" th:text="${invalidMsg}"></div>
+</div>
+<div th:fragment="selectInput(size, selectMsg, labelName, validMsg, invalidMsg)"
+     th:class="'col-md-' + ${size}">
+  <label for="organizerSingle" th:text="${labelName}">Single</label>
+  <select class="form-select" id="organizerSingle" data-choices="data-choices" data-options='{"removeItemButton":true,"placeholder":true}'>
+    <option value="" th:text="${selectMsg}">Select organizer...</option>
+  </select>
+  <div class="valid-feedback" th:text="${validMsg}"></div>
+  <div class="invalid-feedback" th:text="${invalidMsg}"></div>
+</div>
+</html>

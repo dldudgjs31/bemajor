@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<nav th:fragment="breadCrumb" class="mb-3" aria-label="breadcrumb">
+<nav th:fragment="breadCrumb(var01,var02,var03)" class="mb-3" aria-label="breadcrumb">
     <ol class="breadcrumb mb-0">
-        <li class="breadcrumb-item"><a href="#!">Page 1</a></li>
-        <li class="breadcrumb-item"><a href="#!">Page 2</a></li>
-        <li class="breadcrumb-item active">Default</li>
+        <li class="breadcrumb-item" th:text="${var01}"></li>
+        <li class="breadcrumb-item" th:text="${var02}"></li>
+        <li class="breadcrumb-item active" th:text="${var03}"></li>
     </ol>
 </nav>
 </html>

@@ -1,6 +1,8 @@
 $(function(){
   const token  = $('meta[name="_csrf"]').attr('content');
   const header = $('meta[name="_csrf_header"]').attr('content');
+  const token2 = localStorage.getItem('jwt');
+
 //test
   // 1) 메타데이터 호출
   $.ajax({

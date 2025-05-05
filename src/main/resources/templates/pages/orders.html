@@ -11,9 +11,9 @@
 <body>
   <!-- 1) 콘텐츠 영역 주입 -->
   <div layout:fragment="content">
-    <div th:replace="fragments/breadcrumbFragment :: breadCrumb"></div>
-    <div th:replace="fragments/ordersFragment :: ordersContent"></div>
-    <div id="appCalendar" class="calendar-outline mt-6 mb-9 fc fc-media-screen fc-direction-ltr fc-theme-standard" data-calendar='{"events":[{"title":"Bootcamp","start":"2025-03-24"}]}'></div>
+    <div th:replace="fragments/breadcrumbFragment :: breadCrumb('홈','주문관리','주문등록')"></div>
+    <div th:replace="fragments/titleFragment :: title('주문 등록')"></div>
+    <div th:replace="fragments/inputForm/formFragment :: form"></div>
   </div>
 
   <!-- 2) 페이지별 JS 주입 -->
