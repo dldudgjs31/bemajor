@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--
+  title: 제목 텍스트
+  size: 숫자 (1~6) → Bootstrap의 fs-{size}로 해석
+-->
+<h2 th:fragment="title(size, title)"
+    th:class="'fs-' + ${size} + ' mb-2 lh-sm'"
+    th:text="${title}">제목</h2>
+</html>

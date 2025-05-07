@@ -11,8 +11,13 @@
 <body>
   <!-- 1) 콘텐츠 영역 주입 -->
   <div layout:fragment="content">
-    <div th:replace="fragments/breadcrumbFragment :: breadCrumb('홈','주문관리','주문등록')"></div>
-    <div th:replace="fragments/titleFragment :: title('주문 등록')"></div>
+    <div th:replace="fragments/commonFragments/breadcrumbFragment :: breadCrumb('홈','주문관리','주문등록')"></div>
+    <div th:replace="fragments/commonFragments/titleFragment :: title(1,'주문 등록')"></div>
+    <div th:replace="fragments/commonFragments/titleFragment :: title(2,'주문 등록')"></div>
+    <div th:replace="fragments/commonFragments/titleFragment :: title(3,'주문 등록')"></div>
+    <div th:replace="fragments/commonFragments/titleFragment :: title(4,'주문 등록')"></div>
+    <div th:replace="fragments/commonFragments/titleFragment :: title(5,'주문 등록')"></div>
+    <div th:replace="fragments/commonFragments/titleFragment :: title(6,'주문 등록')"></div>
     <div th:replace="fragments/formFragments/formFragment :: form('order')"></div>
   </div>
 
