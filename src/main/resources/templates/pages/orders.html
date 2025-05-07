@@ -13,13 +13,15 @@
   <div layout:fragment="content">
     <div th:replace="fragments/breadcrumbFragment :: breadCrumb('홈','주문관리','주문등록')"></div>
     <div th:replace="fragments/titleFragment :: title('주문 등록')"></div>
-    <div th:replace="fragments/inputForm/formFragment :: form"></div>
+    <div th:replace="fragments/formFragments/formFragment :: form('order')"></div>
   </div>
 
   <!-- 2) 페이지별 JS 주입 -->
   <div layout:fragment="pageScripts">
     <script src="../assets/js/pages/calendar.js"></script>
     <script src="vendors/fullcalendar/index.global.min.js"></script>
+    <script src="vendors/flatpickr/flatpickr.min.js"></script>
+    <link href="vendors/flatpickr/flatpickr.min.css" rel="stylesheet" />
     <!-- orders.js도 같은 프래그먼트 안에! -->
     <script th:src="@{/js/orders.js}"></script>
   </div>

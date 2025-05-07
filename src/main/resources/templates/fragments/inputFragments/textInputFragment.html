@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="textInput(size, id, labelName,placeHolder, validMsg, invalidMsg)"
+     th:class="'col-md-' + ${size}">
+  <label class="form-label" th:text="${labelName}" ></label>
+  <input class="form-control" th:id="${id}" th:name="${id}" th:placeholder="${placeHolder}" type="text" required>
+  <div class="valid-feedback" th:text="${validMsg}"></div>
+  <div class="invalid-feedback" th:text="${invalidMsg}"></div>
+</div>
+</html>

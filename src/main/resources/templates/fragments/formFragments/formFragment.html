@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<form class="row g-3" novalidate="" th:id="${id}" th:fragment="form(id)">
+    <div th:replace="fragments/inputFragments/textInputFragment :: textInput(4,'nameValid','이름','이름','정상입니다','이름을 입력해주세요')"></div>
+    <div th:replace="fragments/inputFragments/selectInputFragment :: selectInput(4, '유형을 선택하세요.', '선택유형', '정상입니다', '선택해주세요')"></div>
+
+    <div class="col-md-4">
+        <label class="form-label">성별</label>
+        <div>
+            <div th:replace="fragments/inputFragments/radioFragment :: radioInline('opt1', 'gender', 'M', '남자', false, false)"></div>
+            <div th:replace="fragments/inputFragments/radioFragment :: radioInline('opt2', 'gender', 'F', '여자', true, false)"></div>
+            <div th:replace="fragments/inputFragments/radioFragment :: radioInline('opt3', 'gender', 'X', '선택 안함', false, true)"></div>
+        </div>
+      </div>
+    <div th:replace="fragments/inputFragments/dataPickerFragment :: datePicker(4, 'birthdate', '생일', '1994.05.03')"></div>
+    <div th:replace="fragments/inputFragments/textInputFragment :: textInput(6,'nameValid','이름','이름','정상입니다','이름을 입력해주세요')"></div>
+    <div th:replace="fragments/inputFragments/textInputFragment :: textInput(12,'nameValid','이름','이름','정상입니다','이름을 입력해주세요')"></div>
+    <div th:replace="fragments/buttonFragments/basicButtonFragment :: basicButton(3,'primary','orderSumbit','저장',false)"></div>
+    <div th:replace="fragments/buttonFragments/basicButtonFragment :: basicButton(3,'danger','orderDel','삭제',true)"></div>
+    <div th:replace="fragments/buttonFragments/basicButtonFragment :: basicButton(3,'info','orderSearch','조회',true)"></div>
+</form>
+</html>

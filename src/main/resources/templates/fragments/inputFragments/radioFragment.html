@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!-- 단일 인라인 라디오 버튼 -->
+<div th:fragment="radioInline(id, name, value, labelText, checked, disabled)"
+     class="form-check form-check-inline">
+  <input class="form-check-input"
+         type="radio"
+         th:id="${id}"
+         th:name="${name}"
+         th:value="${value}"
+         th:attr="checked=${checked}, disabled=${disabled}" />
+  <label class="form-check-label"
+         th:for="${id}"
+         th:text="${labelText}">라벨</label>
+</div>
+</html>

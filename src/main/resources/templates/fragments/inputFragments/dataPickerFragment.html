@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--
+  datePicker 프래그먼트
+  - size: col-md-* 사이즈
+  - id: input id, name
+  - label: 라벨 텍스트
+  - placeholder: 입력 안내 문구
+  - format: flatpickr 날짜 포맷
+-->
+<!--아래 js 참조 필수-->
+<!--<script src="vendors/flatpickr/flatpickr.min.js"></script>-->
+<!--<link href="vendors/flatpickr/flatpickr.min.css" rel="stylesheet" />-->
+<div th:fragment="datePicker(size, id, label, placeholder)"
+     th:class="'col-md-' + ${size}">
+
+  <label class="form-label" th:for="${id}" th:text="${label}">날짜</label>
+
+  <input class="form-control datetimepicker flatpickr-input"
+         th:id="${id}"
+         th:name="${id}"
+         type="text"
+         th:placeholder="${placeholder}"
+         readonly="readonly"
+         data-options='{"disableMobile":true,"dateFormat":"Y.m.d"}' />
+</div>

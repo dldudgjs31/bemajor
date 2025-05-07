@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<!--
+  파라미터 설명:
+    - size: col-md-* 크기 지정 (ex. 4)
+    - color: Bootstrap 컬러 코드 (ex. primary, warning, danger, info)
+    - buttonId: 버튼 ID
+    - buttonName: 버튼 텍스트
+    - outline: true/false (outline 스타일 여부)
+-->
+<div th:fragment="basicButton(size, color, buttonId, buttonName, outline)"
+     th:class="'col-md-' + ${size}">
+  <button
+          type="button"
+          th:id="${buttonId}"
+          th:text="${buttonName}"
+          th:class="'w-100 btn ' + (${outline} ? 'btn-outline-' : 'btn-') + ${color}">
+    버튼
+  </button>
+</div>
