@@ -26,6 +26,9 @@ spring:
     mode: HTML
     cache: false
 
+  profiles:
+    active: local
+
 mybatis:
   mapper-locations: classpath:sql/*.xml
 
