@@ -12,13 +12,13 @@
 
   <!-- 사이드바 + 콘텐츠 -->
   <main class="main" id="top">
-    <div th:replace="layouts/sidebar :: sidebar"></div>
-    <div th:replace="layouts/header :: header"></div>
-    <div class="content">
-        <div class="mb-9" layout:fragment="content">
+    <div class="container">
+      <div class="row flex-center min-vh-100 py-5">
+        <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-3"
+             layout:fragment="content">
           <!-- 여기에 각 페이지의 content가 삽입됩니다 -->
         </div>
-      <div th:replace="layouts/footer :: footer"></div>
+      </div>
     </div>
 
   </main>>

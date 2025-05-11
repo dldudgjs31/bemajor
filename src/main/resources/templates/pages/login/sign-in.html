@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/loginBase}"
+      lang="ko">
+<head>
+  <!-- layout:decorate 로 인해 <head> 내용은 base.html 이 사용하므로 비워두거나
+       여기서는 타이틀만 정의해도 됩니다 -->
+  <title>로그인</title>
+</head>
+<body>
+<!-- 1) 콘텐츠 영역 주입 -->
+<div layout:fragment="content">
+  <a class="d-flex flex-center text-decoration-none mb-4" href="../../../../../../../../Downloads/phoenix-v1.22.0/public/index.html">
+    <div class="d-flex align-items-center fw-bolder fs-3 d-inline-block">
+      <img src="../../../../../../../../Downloads/phoenix-v1.22.0/public/assets/img/icons/logo.png" alt="phoenix" width="58" />
+    </div>
+  </a>
+  <div class="text-center mb-7">
+    <h3 class="text-body-highlight">로그인</h3>
+    <p class="text-body-tertiary">스토어핏 로그인 화면</p>
+  </div>
+  <button class="btn btn-phoenix-secondary w-100 mb-3">
+    <span class="fab fa-google text-danger me-2 fs-9"></span>
+    Sign in with google
+  </button>
+  <button class="btn btn-phoenix-secondary w-100">
+    <span class="fab fa-facebook text-primary me-2 fs-9"></span>
+    Sign in with kakaoTalk
+  </button>
+  <div class="position-relative">
+    <hr class="bg-body-secondary mt-5 mb-4" />
+    <div class="divider-content-center">계정으로 로그인</div>
+  </div>
+  </div>
+  <div class="mb-3 text-start">
+    <label class="form-label" for="password">Password</label>
+    <div class="form-icon-container" data-password="data-password">
+      <input class="form-control form-icon-input pe-6" id="password" type="password" placeholder="Password" data-password-input="data-password-input" /><span class="fas fa-key text-body fs-9 form-icon"></span>
+      <button class="btn px-3 py-0 h-100 position-absolute top-0 end-0 fs-7 text-body-tertiary" data-password-toggle="data-password-toggle"><span class="uil uil-eye show"></span><span class="uil uil-eye-slash hide"></span></button>
+    </div>
+  </div>
+  <div class="row flex-between-center mb-7">
+    <div class="col-auto">
+      <div class="form-check mb-0">
+        <input class="form-check-input" id="basic-checkbox" type="checkbox" checked="checked" />
+        <label class="form-check-label mb-0" for="basic-checkbox">Remember me</label>
+      </div>
+    </div>
+    <div class="col-auto"><a class="fs-9 fw-semibold" href="forgot-password.html">Forgot Password?</a></div>
+  </div>
+  <button class="btn btn-primary w-100 mb-3">Sign In</button>
+  <div class="text-center"><a class="fs-9 fw-bold" href="sign-up.html">Create an account</a></div>
+</div>
+
+<!-- 2) 페이지별 JS 주입 -->
+<div layout:fragment="pageScripts">
+  <script src="../assets/js/pages/calendar.js"></script>
+  <script src="vendors/fullcalendar/index.global.min.js"></script>
+  <script src="vendors/flatpickr/flatpickr.min.js"></script>
+  <link href="vendors/flatpickr/flatpickr.min.css" rel="stylesheet" />
+  <!-- orders.js도 같은 프래그먼트 안에! -->
+  <script th:src="@{/js/orders.js}"></script>
+</div>
+</body>
+</html>

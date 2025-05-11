@@ -61,7 +61,8 @@ public class SecurityConfig {
               .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
               .ignoringAntMatchers(
                   "/api/members/login",
-                      "/test",
+                      "/login/sign-in",
+                  "/login/sign-in",
                   "/api/ping",
                   "/api/orders/**",
                   "/assets/**",
@@ -76,10 +77,12 @@ public class SecurityConfig {
           // 3) URL별 인가
           .authorizeRequests(auth -> auth
               // 뷰 페이지
-              .antMatchers("/", "/index", "/orders/**").permitAll()
+              .antMatchers("/login/sign-in", "/index", "/orders/**").permitAll()
               // 인증, 헬스체크 등
               .antMatchers(
-                  "/api/members/login",
+
+                          "/login/sign-in" +
+                          "/api/members/login",
                   "/api/ping",
                   "/api/orders/**", "/test"
               ).permitAll()

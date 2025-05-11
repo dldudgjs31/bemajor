@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <div th:fragment="appScripts">
+      <meta charset="UTF-8"/>
+      <title th:text="${pageTitle}">페이지 제목</title>
+      <meta name="_csrf"        th:content="${_csrf.token}"/>
+      <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+      <!-- 공통 라이브러리·CSS -->
       <!-- ===============================================-->
       <!--    Favicons-->
       <!-- ===============================================-->
       <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicons/apple-touch-icon.png">
       <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon-32x32.png">
       <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicons/favicon-16x16.png">
-      <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicons/favicon.ico">
+      <!--파비콘 설정-->
+      <!--<link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicons/favicon.ico">-->
       <link rel="manifest" href="../assets/img/favicons/manifest.json">
       <meta name="msapplication-TileImage" content="../assets/img/favicons/mstile-150x150.png">
       <meta name="theme-color" content="#ffffff">
@@ -42,19 +49,25 @@
       <script src="../assets/js/phoenix.js"></script>
 
       <script>
-        var phoenixIsRTL = window.config.config.phoenixIsRTL;
-        if (phoenixIsRTL) {
-          var linkDefault = document.getElementById('style-default');
-          var userLinkDefault = document.getElementById('user-style-default');
-          linkDefault.setAttribute('disabled', true);
-          userLinkDefault.setAttribute('disabled', true);
-          document.querySelector('html').setAttribute('dir', 'rtl');
-        } else {
-          var linkRTL = document.getElementById('style-rtl');
-          var userLinkRTL = document.getElementById('user-style-rtl');
-          linkRTL.setAttribute('disabled', true);
-          userLinkRTL.setAttribute('disabled', true);
-        }
+          var phoenixIsRTL = window.config.config.phoenixIsRTL;
+          if (phoenixIsRTL) {
+              var linkDefault = document.getElementById('style-default');
+              var userLinkDefault = document.getElementById('user-style-default');
+              linkDefault.setAttribute('disabled', true);
+              userLinkDefault.setAttribute('disabled', true);
+              document.querySelector('html').setAttribute('dir', 'rtl');
+          } else {
+              var linkRTL = document.getElementById('style-rtl');
+              var userLinkRTL = document.getElementById('user-style-rtl');
+              linkRTL.setAttribute('disabled', true);
+              userLinkRTL.setAttribute('disabled', true);
+          }
+      </script>
+      <!-- jQuery가 base.html에 없다면 여기에 먼저 로드 -->
+      <script
+              src="https://code.jquery.com/jquery-3.6.0.min.js"
+              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+              crossorigin="anonymous">
       </script>
   </div>
 </html>
